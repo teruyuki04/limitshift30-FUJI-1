@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<!-- Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-DSNTL3N5XD"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'G-DSNTL3N5XD');
+</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>株式会社FUJI　経営構造診断｜LimitShift 30</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@400;500;600;700&family=DM+Mono:wght@400;500&family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --white:#f9f7f2;
+    --navy:#1a2640;
+    --navy-soft:#24365c;
+    --gold:#a07820;
+    --gold-bright:#c79a3f;
+    --gray-text:#4a4744;
+    --gray-line:#d8d3c8;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{font-size:19px; scroll-behavior:smooth;}
+  body{
+    font-family:'Noto Serif JP', serif;
+    background:var(--white);
+    color:var(--navy);
+    line-height:1.85;
+    overflow-x:hidden;
+  }
+  .mono{font-family:'DM Mono', monospace; letter-spacing:.04em;}
+  .deco-num{font-family:'Cormorant Garamond', serif;}
+  a{color:inherit; text-decoration:none;}
+  img{max-width:100%;}
+
+  /* ===== scroll progress bar ===== */
+  #scroll-progress{
+    position:fixed; top:0; left:0; height:3px; width:0%;
+    background:linear-gradient(90deg, var(--gold), var(--gold-bright));
+    z-index:9999; transition:width .08s linear;
+  }
+
+  /* ===== nav ===== */
+  header.nav{
+    position:fixed; top:0; left:0; right:0; z-index:900;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:18px 5%;
+    background:rgba(249,247,242,0);
+    transition:background .35s ease, box-shadow .35s ease, padding .35s ease;
+  }
+  header.nav.scrolled{
+    background:rgba(26,38,64,.92);
+    backdrop-filter:blur(6px);
+    box-shadow:0 4px 18px rgba(0,0,0,.12);
+    padding:12px 5%;
+  }
+  .nav-left{display:flex; align-items:center; gap:14px; font-size:16px;}
+  .nav-logo{font-weight:600; letter-spacing:.03em;}
+  header.nav.scrolled .nav-logo, header.nav.scrolled .nav-divider, header.nav.scrolled .nav-company{color:var(--white);}
+  .nav-divider{color:var(--gray-line); opacity:.7;}
+  .nav-company{font-size:15px; color:var(--gray-text);}
+  .nav-cta{
+    font-family:'DM Mono', monospace; font-size:15px;
+    border:1px solid var(--navy); padding:9px 20px; border-radius:2px;
+    white-space:nowrap; transition:all .25s ease;
+  }
+  header.nav.scrolled .nav-cta{border-color:var(--gold-bright); color:var(--white);}
+  .nav-cta:hover{background:var(--navy); color:var(--white);}
+  header.nav.scrolled .nav-cta:hover{background:var(--gold); border-color:var(--gold);}
+
+  /* ===== hero ===== */
+  .hero{
+    display:grid; grid-template-columns:1.15fr 1fr; min-height:100vh;
+  }
+  .hero-left{
+    background:var(--white);
+    padding:140px 6% 80px 6%;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .kicker{font-size:15px; color:var(--gold); margin-bottom:22px;}
+  .hero-company{font-size:24px; font-weight:600; margin-bottom:18px; color:var(--navy);}
+  .hero-h1{
+    font-size:38px; font-weight:700; line-height:1.55; color:var(--navy);
+    margin-bottom:32px; max-width:13ch;
+  }
+  .hero-sub{font-size:18px; color:var(--gray-text); max-width:34em; margin-bottom:34px;}
+  .hero-meta{font-size:14px; color:var(--gray-text); line-height:2.1;}
+  .hero-meta span{display:block;}
+
+  .hero-right{
+    background:var(--navy); color:var(--white);
+    padding:140px 6% 80px 6%;
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .toc{margin-bottom:48px;}
+  .toc-item{
+    display:flex; gap:16px; align-items:baseline;
+    padding:14px 0; border-bottom:1px solid rgba(255,255,255,.12);
+    font-size:17px;
+  }
+  .toc-num{font-family:'Cormorant Garamond', serif; font-size:22px; color:var(--gold-bright);}
+  .cta-btn{
+    display:inline-block; background:var(--gold); color:var(--navy);
+    font-weight:600; font-size:18px; padding:18px 30px; border-radius:2px;
+    text-align:center; transition:background .25s ease, transform .25s ease;
+  }
+  .cta-btn:hover{background:var(--gold-bright); transform:translateY(-2px);}
+  .cta-note{font-size:15px; color:rgba(255,255,255,.7); margin-top:16px;}
+
+  /* ===== generic section ===== */
+  section{padding:120px 6%; max-width:1180px; margin:0 auto;}
+  .section-label{font-size:14px; color:var(--gold); margin-bottom:18px;}
+  .section-title{font-size:30px; font-weight:700; margin-bottom:46px; line-height:1.5;}
+  .lead{font-size:19px; color:var(--gray-text); max-width:42em; margin-bottom:50px;}
+
+  .fade-in{opacity:0; transform:translateY(28px); transition:opacity .8s ease, transform .8s ease;}
+  .fade-in.visible{opacity:1; transform:translateY(0);}
+
+  /* ===== S01 grid ===== */
+  .metric-grid{display:grid; grid-template-columns:1fr 1fr; gap:24px;}
+  .metric-card{
+    border:1px solid var(--gray-line); padding:34px 30px; border-radius:3px;
+    background:#fff;
+  }
+  .metric-card.emphasis{background:var(--navy); color:var(--white); border-color:var(--navy);}
+  .metric-card.large{grid-column:1 / -1;}
+  .metric-value{font-family:'Cormorant Garamond', serif; font-size:52px; font-weight:600; line-height:1;}
+  .metric-card.large .metric-value{font-size:64px; color:var(--gold-bright);}
+  .metric-label{font-size:16px; margin-top:12px; font-weight:600;}
+  .metric-sublabel{font-size:15px; color:var(--gray-text); margin-top:10px; line-height:1.7;}
+  .metric-card.emphasis .metric-sublabel{color:rgba(255,255,255,.75);}
+
+  /* ===== S02 ===== */
+  .reading-block{margin-bottom:40px;}
+  .reading-tag{font-size:14px; color:var(--gold); margin-bottom:14px;}
+  .reading-text{font-size:18px; line-height:1.95; max-width:46em;}
+  .reading-text.door{
+    border-left:3px solid var(--gold); padding-left:28px;
+  }
+  .closing-quote{
+    margin-top:56px; padding:34px 36px; background:var(--navy); color:var(--white);
+    border-radius:3px; font-size:17px; line-height:1.95; max-width:50em;
+  }
+
+  /* ===== S03 ===== */
+  .turning-point{
+    font-size:24px; font-weight:600; line-height:1.75; max-width:38em;
+    margin-bottom:70px; color:var(--navy);
+    padding:36px; background:linear-gradient(135deg, rgba(160,120,32,.06), rgba(26,38,64,.04));
+    border-radius:3px;
+  }
+  .process-lead{font-size:18px; color:var(--gray-text); max-width:44em; margin-bottom:50px;}
+  .q-chain{display:flex; flex-direction:column; gap:0;}
+  .q-step{
+    display:grid; grid-template-columns:200px 1fr; gap:30px;
+    padding:32px 0; border-bottom:1px solid var(--gray-line);
+    cursor:pointer;
+  }
+  .q-step:first-child{border-top:1px solid var(--gray-line);}
+  .q-step-label{font-size:15px; color:var(--gold);}
+  .q-step-title{font-size:20px; font-weight:600; margin-top:8px;}
+  .q-step-body{font-size:17px; line-height:1.9; color:var(--gray-text); max-width:42em;}
+  .chain-note{margin-top:36px; font-size:16px; color:var(--gray-text); max-width:44em;}
+
+  /* ===== S04 ===== */
+  .softening{font-size:18px; line-height:1.95; max-width:46em; margin-bottom:60px; color:var(--navy);}
+  .core-question{
+    background:var(--navy); color:var(--white); padding:52px 48px; border-radius:3px;
+    font-size:24px; font-weight:600; line-height:1.7; max-width:50em; margin-bottom:56px;
+  }
+  .metaphor{font-size:17px; line-height:1.95; color:var(--gray-text); max-width:44em; margin-bottom:56px;}
+  .evidence-grid{display:grid; grid-template-columns:repeat(2,1fr); gap:18px; margin-bottom:50px;}
+  .evidence-chip{
+    border:1px solid var(--gray-line); padding:22px 24px; border-radius:3px;
+    font-size:16px; line-height:1.75; background:#fff;
+  }
+  .invite-text{font-size:17px; color:var(--gray-text); max-width:42em;}
+
+  /* ===== S05 ===== */
+  .os-core{font-size:24px; font-weight:600; line-height:1.7; max-width:38em; margin-bottom:30px;}
+  .os-sub{font-size:18px; color:var(--gray-text); max-width:46em; margin-bottom:20px;}
+  .mission{
+    font-size:18px; line-height:1.95; max-width:46em; margin:40px 0 60px 0;
+    border-left:3px solid var(--gold); padding-left:28px;
+  }
+  table.os-compare{width:100%; border-collapse:collapse; margin-bottom:56px;}
+  table.os-compare th{
+    font-size:17px; padding:20px 24px; text-align:left;
+    background:var(--navy); color:var(--white);
+  }
+  table.os-compare th:last-child{background:var(--gold); color:var(--navy);}
+  table.os-compare td{
+    font-size:16px; padding:20px 24px; border-bottom:1px solid var(--gray-line);
+    vertical-align:top; line-height:1.8;
+  }
+  table.os-compare td:first-child{background:rgba(26,38,64,.03);}
+  table.os-compare td:last-child{background:rgba(160,120,32,.05);}
+  .features3{display:flex; gap:30px; flex-wrap:wrap;}
+  .feature-item{font-size:16px; color:var(--gray-text); flex:1; min-width:180px;}
+  .feature-item .deco-num{font-size:30px; color:var(--gold); display:block; margin-bottom:8px;}
+
+  /* ===== S06 ===== */
+  .cta-section{background:var(--white); padding:0;}
+  .cta-wrap{display:grid; grid-template-columns:1fr 1fr; max-width:1180px; margin:0 auto;}
+  .cta-left{padding:120px 6% 120px 6%;}
+  .cta-left h2{font-size:30px; font-weight:700; margin-bottom:30px; line-height:1.5;}
+  .cta-left p{font-size:18px; color:var(--gray-text); margin-bottom:26px; max-width:34em; line-height:1.9;}
+  .cta-right{background:var(--navy); color:var(--white); padding:100px 6%;}
+  form{display:flex; flex-direction:column; gap:18px;}
+  .form-row{display:flex; flex-direction:column; gap:8px;}
+  .form-row label{font-size:15px; color:rgba(255,255,255,.85);}
+  .form-row input, .form-row textarea{
+    background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.25);
+    color:var(--white); padding:13px 14px; font-size:16px; border-radius:2px;
+    font-family:'Noto Serif JP', serif;
+  }
+  .form-row input::placeholder, .form-row textarea::placeholder{color:rgba(255,255,255,.4);}
+  .form-row.check{flex-direction:row; align-items:center; gap:10px;}
+  .form-row.check input{width:auto;}
+  .two-col{display:grid; grid-template-columns:1fr 1fr; gap:16px;}
+  .submit-btn{
+    background:var(--gold); color:var(--navy); border:none; padding:18px;
+    font-size:18px; font-weight:600; border-radius:2px; cursor:pointer;
+    margin-top:10px; transition:background .25s ease;
+  }
+  .submit-btn:hover{background:var(--gold-bright);}
+  .form-foot{font-size:15px; color:rgba(255,255,255,.6); margin-top:18px; text-align:center;}
+
+  #success-overlay{
+    position:fixed; inset:0; background:rgba(26,38,64,.95);
+    display:none; align-items:center; justify-content:center; z-index:9998;
+    color:var(--white); text-align:center; padding:40px;
+  }
+  #success-overlay.show{display:flex;}
+  #success-overlay .box{max-width:480px;}
+  #success-overlay h3{font-size:26px; margin-bottom:18px;}
+  #success-overlay p{font-size:17px; color:rgba(255,255,255,.8); margin-bottom:30px;}
+  #success-overlay button{
+    background:var(--gold); color:var(--navy); border:none; padding:14px 32px;
+    font-size:16px; border-radius:2px; cursor:pointer;
+  }
+
+  footer{
+    background:var(--navy); color:rgba(255,255,255,.7);
+    padding:40px 6%; display:flex; justify-content:space-between; flex-wrap:wrap; gap:14px;
+    font-size:14px;
+  }
+
+  @media(max-width:900px){
+    .hero{grid-template-columns:1fr;}
+    .hero-left, .hero-right{padding:120px 7% 60px 7%;}
+    .metric-grid{grid-template-columns:1fr;}
+    .metric-card.large{grid-column:auto;}
+    .q-step{grid-template-columns:1fr;}
+    .evidence-grid{grid-template-columns:1fr;}
+    .cta-wrap{grid-template-columns:1fr;}
+    .cta-left, .cta-right{padding:80px 7%;}
+    .two-col{grid-template-columns:1fr;}
+    table.os-compare{font-size:14px;}
+  }
+  @media(max-width:600px){
+    html{font-size:17px;}
+    .hero-h1{font-size:28px;}
+    .section-title{font-size:24px;}
+    .core-question, .turning-point{font-size:19px; padding:28px;}
+    .os-core{font-size:20px;}
+  }
+</style>
+</head>
+<body>
+
+<div id="scroll-progress"></div>
+
+<header class="nav" id="siteNav">
+  <div class="nav-left">
+    <span class="nav-logo mono">Proudfoot Japan</span>
+    <span class="nav-divider">｜</span>
+    <span class="nav-company">株式会社FUJI　経営構造診断</span>
+  </div>
+  <a href="#s06" class="nav-cta mono">対話を申し込む</a>
+</header>
+
+<section class="hero" style="padding:0;">
+  <div class="hero-left">
+    <div class="kicker mono">LIMITSHIFT 30 — 経営構造診断</div>
+    <div class="hero-company">株式会社FUJI</div>
+    <h1 class="hero-h1">ロボットは動き出した。<br>次に動くべきは、何か。</h1>
+    <p class="hero-sub">御社の中計・決算・技術資産・競合動向を精査する中で、外部から一つの問いが生まれました。その問いが的外れかどうかを確かめるために、このページを書きました。答えを持ってきたのではありません。問いを持ってきました。</p>
+    <div class="hero-meta mono">
+      <span>株式会社FUJI（証券コード：6134／東証プライム・名証プレミア）</span>
+      <span>診断基準日：2026年6月（2026年3月期決算開示時点）</span>
+      <span>根拠資料：有価証券報告書・決算説明資料・公開プレスリリース等</span>
+    </div>
+  </div>
+  <div class="hero-right">
+    <div class="toc">
+      <div class="toc-item"><span class="toc-num deco-num">01</span><span>外から見えた数値</span></div>
+      <div class="toc-item"><span class="toc-num deco-num">02</span><span>構造の読み筋</span></div>
+      <div class="toc-item"><span class="toc-num deco-num">03</span><span>解くべき問いのプロセス</span></div>
+      <div class="toc-item"><span class="toc-num deco-num">04</span><span>御社に投げたい問い</span></div>
+    </div>
+    <a href="#s06" class="cta-btn">問いが的外れかどうかを、確かめたい</a>
+    <div class="cta-note">「違います」という答えも、私たちにとっては大切な対話です。</div>
+  </div>
+</section>
+
+<section id="s01" class="fade-in">
+  <div class="section-label mono">01 — FIRST MOVEMENT</div>
+  <h2 class="section-title">外から見えた数値と問い</h2>
+  <p class="lead">公開されている数値を並べたとき、一つの問いが生まれました。技術は前進し、選別ロボットも実機で稼働を始めている。にもかかわらず、事業の成果という数字には、まだそれが十分に表れていないように見える。その差は、構想から実行へ変換するどこかで生まれているのではないか——というのが、外部から見えた問いです。</p>
+
+  <div class="metric-grid">
+    <div class="metric-card emphasis">
+      <div class="metric-value deco-num">7.0%</div>
+      <div class="metric-label">ROE（2026年3月期）</div>
+      <div class="metric-sublabel">2024年3月期の4.5%から回復し、中計最終年度2027年3月期の目標は当初10%から11%以上へ上方修正された</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value deco-num">非開示</div>
+      <div class="metric-label">新規事業の売上構成比</div>
+      <div class="metric-sublabel">ロボットソリューションが売上の9割超を占め、新規テーマは個別開示の水準に達していない</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-value deco-num">96.9億円</div>
+      <div class="metric-label">のれん減損（2026年3月期）</div>
+      <div class="metric-sublabel">半導体子会社ファスフォードテクノロジで計上され、収益構造の転換点を示している</div>
+    </div>
+    <div class="metric-card large emphasis">
+      <div class="metric-value deco-num">2027年3月期</div>
+      <div class="metric-label">臨界年</div>
+      <div class="metric-sublabel">現中計の最終年度の実績確定と、新中計の骨格発表が重なるタイミングである</div>
+    </div>
+  </div>
+</section>
+
+<section id="s02" class="fade-in">
+  <div class="section-label mono">02 — STRUCTURAL READING</div>
+  <h2 class="section-title">構造の読み筋</h2>
+
+  <div class="reading-block">
+    <div class="reading-tag mono">外から見えた一つの読み筋</div>
+    <p class="reading-text">御社の精密実装技術は、もともとミクロン単位の部品を高速・正確に配置するために磨かれてきたものだと理解しています。同じ機構が、対象も環境も全く異なる現場で実際に動き始めている——この事実をどう位置づけるべきか、私自身まだ言葉を選んでいる最中です。</p>
+  </div>
+
+  <div class="reading-block">
+    <div class="reading-tag mono">ドア</div>
+    <p class="reading-text door">御社が当然とする前提は、"選別という工程は現場の省人化課題である"というものではないでしょうか。崩すと、選別の精度を証明できる立場が、現場の外側——原料の品質を求める側に移っていく別の空間が見えてくる気がしています。</p>
+  </div>
+
+  <div class="closing-quote">
+    これは外部公開情報から組み立てた仮説に過ぎない。御社の内側から見えている景色は、どう違うか——そこに、私たちが最もお伺いしたいことがある。
+  </div>
+</section>
+
+<section id="s03" class="fade-in">
+  <div class="section-label mono">03 — THE HINGE</div>
+  <div class="turning-point">
+    仮に当たっているとして、この先で事業が立ち上がるかどうかを決めるのは、技術がもう一段優れているかどうかではなく、"誰にとっての証拠として残るか"が定義されているかどうかだと感じています。
+  </div>
+
+  <h2 class="section-title">解くべき問いのプロセス</h2>
+  <p class="process-lead">多くのJTCが、構想（Forecast）を実行（Plan）に変える過程を言語化しないまま、既存路線の延長に戦略を描く。LimitShift 30が最初のゴールとするのは、経営者が「解くべき問い」を自力で立て直せる状態になるよう支援することです。</p>
+
+  <div class="q-chain">
+    <div class="q-step">
+      <div>
+        <div class="q-step-label mono">問い①</div>
+        <div class="q-step-title">構想の質</div>
+      </div>
+      <div class="q-step-body">顧客が口にしている課題に応えているのか。それとも、顧客自身がまだ言語化していない未開拓の痛点を捉えているのか。</div>
+    </div>
+    <div class="q-step">
+      <div>
+        <div class="q-step-label mono">問い②</div>
+        <div class="q-step-title">検証の質</div>
+      </div>
+      <div class="q-step-body">そのPoCは「技術が動く」ことを証明する設計か。それとも「顧客が後戻りできない」ことを証明する設計か。</div>
+    </div>
+    <div class="q-step">
+      <div>
+        <div class="q-step-label mono">問い③</div>
+        <div class="q-step-title">再現性</div>
+      </div>
+      <div class="q-step-body">構想と検証を、特定の個人の勘に委ねているのか。それとも、組織として繰り返せる仕組みになっているのか。</div>
+    </div>
+  </div>
+  <p class="chain-note">①が未開拓の痛点を捉えていなければ、②は技術実証に留まり、③は意味を持たない。</p>
+</section>
+
+<section id="s04" class="fade-in">
+  <div class="section-label mono">04 — SECOND MOVEMENT</div>
+  <h2 class="section-title">御社に投げたい問い</h2>
+
+  <p class="softening">御社が積み上げてきた高速・高精度の機構技術を、全く異なる現場にまで転用し、実際に動かしたという事実は、技術力の証明として十分すぎるものだと思います。ただ、課題は技術の手前ではなく、その技術が"誰にとっての武器になるか"を定義し直す手前にあったケースを、私はこれまで繰り返し見てきました。</p>
+
+  <div class="core-question">
+    御社が「ロボットを作ること」にここまで真剣に向き合ってきたことは確かです。では、その先にある「市場が成立すること」を証明するために、今、何が足りていないとお考えですか。
+  </div>
+
+  <p class="metaphor">タクシー会社は"車を運転する技術"を売っていましたが、Uberは"今どこに車がいて、いつ来るか"という情報そのものに価値を見出し、車を持たずに業界の主導権を握りました。技術を正確に動かすことと、その先で何を握るかは、別の問いなのかもしれません。</p>
+
+  <div class="evidence-grid">
+    <div class="evidence-chip">電子部品実装ロボット関連の技術とAI画像認識を融合した選別ロボットを、自社開発で実機化（2024年8月発表）</div>
+    <div class="evidence-chip">大成ロテック株式会社の産業廃棄物中間処理施設にて2024年11月から実機稼働を開始</div>
+    <div class="evidence-chip">高速ピックと90%超の検出精度を実機で実現（公開仕様）</div>
+    <div class="evidence-chip">三井住友ファイナンス&リース株式会社のSDGsリース「みらい2030」（寄付型）の枠組みを活用し導入された3者構造の実績</div>
+  </div>
+
+  <p class="invite-text">この問いに的外れな点があれば、ご指摘いただきたい。答えを持ってきたのではありません。</p>
+</section>
+
+<section id="s05" class="fade-in">
+  <div class="section-label mono">05 — LANDING</div>
+  <h2 class="section-title">イノベーション思考OSを、組織に植え付ける</h2>
+
+  <div class="os-core">これが一人の社員の偶然の情熱によって生まれた事例なのか、それとも組織として再現できる仕組みなのか——その境目に、まだ言語化されていない問いがあるように見えます。</div>
+  <p class="os-sub">装置を正しく動かす言語（Fit）と、誰にとっての価値かを定義する言語（Profit）の間に、変換する言葉がまだ無いのかもしれません。</p>
+
+  <div class="mission">
+    不確実性を武器に変える触媒。Proudfoot Japanは、答えを売る組織ではありません。「解くべき問いを自力で立て、自力で解ける組織」をつくることが、私たちの本当の提供価値です。
+  </div>
+
+  <table class="os-compare">
+    <tr><th>カイゼンOS（多くのJTCの現状）</th><th>イノベーション思考OS</th></tr>
+    <tr><td>現在の延長線上で改善を追求する</td><td>前提を意図的に崩し、競合のいない土俵を定義できる</td></tr>
+    <tr><td>前提を疑わず、与えられた問いを解く</td><td>「解くべき問い」を自力で立て、検証プロセスを自走できる</td></tr>
+    <tr><td>不確実性をリスクとして排除しようとする</td><td>不確実性を、競合との差を生む源泉として使える</td></tr>
+    <tr><td>イノベーションの芽がカイゼンの効率で刈り取られる</td><td>経営者自身が「動ける問い」を持つ状態になる</td></tr>
+  </table>
+
+  <div class="features3">
+    <div class="feature-item"><span class="deco-num">01</span>問いファースト</div>
+    <div class="feature-item"><span class="deco-num">02</span>触媒としての伴走</div>
+    <div class="feature-item"><span class="deco-num">03</span>OSの植え付けまで</div>
+  </div>
+</section>
+
+<section id="s06" class="cta-section fade-in" style="padding:0;">
+  <div class="cta-wrap">
+    <div class="cta-left">
+      <h2>問いが的外れかどうかを、<br>教えてください。</h2>
+      <p>このページに書いたことは、外部公開情報だけから見えたものです。内側からしか見えないことの方が、はるかに多いはずです。「的外れです」という答えも、私たちにとっては大切な対話です。</p>
+      <p>私たちが30分でお伝えしたいのは、答えではありません。御社がまだ解いていない問いがあるとしたら、それはどこか——その問いを、一緒に見つけることが、この対話の目的です。</p>
+    </div>
+    <div class="cta-right">
+      <form id="contactForm">
+        <div class="two-col">
+          <div class="form-row">
+            <label>お名前 <span class="mono">※必須</span></label>
+            <input type="text" name="name" required>
+          </div>
+          <div class="form-row">
+            <label>会社名 <span class="mono">※必須</span></label>
+            <input type="text" name="company" required>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="form-row">
+            <label>役職</label>
+            <input type="text" name="title">
+          </div>
+          <div class="form-row">
+            <label>メールアドレス <span class="mono">※必須</span></label>
+            <input type="email" name="email" required>
+          </div>
+        </div>
+        <div class="two-col">
+          <div class="form-row">
+            <label>候補日① <span class="mono">※必須</span></label>
+            <input type="text" name="date1" placeholder="例：7月3日 14:00〜" required>
+          </div>
+          <div class="form-row">
+            <label>候補日②</label>
+            <input type="text" name="date2">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>候補日③</label>
+          <input type="text" name="date3">
+        </div>
+        <div class="form-row check">
+          <input type="checkbox" id="adjust" name="adjust_by_email">
+          <label for="adjust" style="margin:0;">メールで調整したい</label>
+        </div>
+        <div class="form-row">
+          <label>事前コメント（任意）</label>
+          <textarea name="comment" rows="3"></textarea>
+        </div>
+        <button type="submit" class="submit-btn">対話を申し込む</button>
+      </form>
+      <div class="form-foot">売り込みではありません。私たちの問いが的外れなら、そう言っていただければ十分です</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div>Proudfoot Japan — LIMITSHIFT 30</div>
+  <div>本ページは株式会社FUJI　河口浩二様専用の資料です。</div>
+</footer>
+
+<div id="success-overlay">
+  <div class="box">
+    <h3>対話のお申し込みを受け付けました</h3>
+    <p>ご記入いただいた内容を確認のうえ、担当よりご連絡いたします。</p>
+    <button onclick="document.getElementById('success-overlay').classList.remove('show')">閉じる</button>
+  </div>
+</div>
+
+<script>
+  // scroll progress bar
+  const progressBar = document.getElementById('scroll-progress');
+  function updateProgress(){
+    const h = document.documentElement;
+    const scrolled = (h.scrollTop) / (h.scrollHeight - h.clientHeight) * 100;
+    progressBar.style.width = scrolled + '%';
+  }
+  document.addEventListener('scroll', updateProgress);
+  updateProgress();
+
+  // nav background on scroll
+  const nav = document.getElementById('siteNav');
+  function updateNav(){
+    if(window.scrollY > 40){ nav.classList.add('scrolled'); }
+    else{ nav.classList.remove('scrolled'); }
+  }
+  document.addEventListener('scroll', updateNav);
+  updateNav();
+
+  // intersection observer fade-in
+  const observer = new IntersectionObserver((entries)=>{
+    entries.forEach(entry=>{
+      if(entry.isIntersecting){
+        entry.target.classList.add('visible');
+      }
+    });
+  }, {threshold:0.12});
+  document.querySelectorAll('.fade-in').forEach(el=>observer.observe(el));
+
+  // form submission via Formspree (ajax)
+  const form = document.getElementById('contactForm');
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    const data = new FormData(form);
+    fetch('https://formspree.io/f/mjgalvdz', {
+      method:'POST',
+      body:data,
+      headers:{'Accept':'application/json'}
+    }).then(response=>{
+      if(response.ok){
+        document.getElementById('success-overlay').classList.add('show');
+        form.reset();
+      } else {
+        alert('送信に失敗しました。お手数ですが、再度お試しください。');
+      }
+    }).catch(()=>{
+      alert('送信に失敗しました。お手数ですが、再度お試しください。');
+    });
+  });
+</script>
+
+</body>
+</html>
